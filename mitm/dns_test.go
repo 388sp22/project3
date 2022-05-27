@@ -43,7 +43,8 @@ func TestHasQuestionForDomain(t *testing.T) {
 	} {
 		v := v
 		t.Run(v.name, func(t *testing.T) {
-			assert.Equal(t, v.domain, dnsWithDomainQuestions(v.questions))
+			got := HasQuestionForDomain(dnsWithDomainQuestions(v.questions), v.domain)
+			assert.Equal(t, v.expected, got, "HasQuestionForDomain(dns, %q) returned incorrect value", v.domain)
 		})
 	}
 }
